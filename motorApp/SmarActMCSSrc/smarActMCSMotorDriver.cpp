@@ -24,7 +24,7 @@
 #include <epicsExport.h>
 
 /* Static configuration parameters (compile-time constants) */
-#undef  DEBUG
+#undef DEBUG
 
 #define CMD_LEN 50
 #define REP_LEN 50
@@ -296,7 +296,10 @@ SmarActMCSAxis::SmarActMCSAxis(class SmarActMCSController *cnt_p, int axis, int 
 		goto bail;
 
         // Determine if stage is a rotation stage
-	if (sensorType_ == 2 || sensorType_ == 8 || sensorType_ == 14 || sensorType_ == 20 || sensorType_ == 22 || sensorType_ == 23 || (sensorType_ >= 25 && sensorType_ <= 29)) {
+	if (sensorType_ == 2 || sensorType_ == 4 || sensorType_ == 7 || sensorType_ == 8 || \
+            (sensorType_ >= 10 && sensorType_ <= 17) || sensorType_ == 19 || \
+            sensorType_ == 20 || sensorType_ == 22 || sensorType_ == 23 || \
+            (sensorType_ >= 25 && sensorType_ <= 29)) {
 		isRot_ = 1;
 		
 		if ( asynSuccess == getAngle(&angle, &rev) ) {
